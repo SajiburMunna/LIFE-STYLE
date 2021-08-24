@@ -5,7 +5,7 @@ import Women from "./Home/Women";
 import Navbar from "./Home/Navbar";
 import NotFound from "./Home/NotFound";
 import Productdetails from "./Home/Productdetails";
-import Header1 from "./Home/Header1";
+
 function App() {
   return (
     <div>
