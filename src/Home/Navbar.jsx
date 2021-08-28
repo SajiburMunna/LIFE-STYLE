@@ -22,6 +22,9 @@ import { Input } from "antd";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 import { Badge, Avatar } from "antd";
+import { useContext } from "react";
+
+import CartContext from "../context/cart/CartContext";
 
 const { Search } = Input;
 
@@ -90,6 +93,9 @@ const Navbar = () => {
     setVisible(false);
   };
 
+  const { cartItems, removeItem } = useContext(CartContext);
+
+  const totalPrice = cartItems.reduce((acc, curr) => acc + curr.price, 0);
   return (
     <>
       <AppBar className={classes.app}>
@@ -159,7 +165,7 @@ const Navbar = () => {
                   />
                 </div>
                 <div style={{ marginRight: "15px" }}>
-                  <Badge count={1}>
+                  <Badge count={cartItems.length}>
                     <Avatar
                       onClick={showDrawer}
                       style={{ backgroundColor: "white", color: "#42a5f5" }}
@@ -198,16 +204,32 @@ const Navbar = () => {
         </div>
       </AppBar>
       <Drawer
-        title="ADD CART"
+        title={`ADD CART-Total-${totalPrice}$`}
         placement="right"
         closable={false}
         onClose={onClose}
         visible={visible}
         zIndex={2000}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        {cartItems.map((item) => (
+          <div
+            style={{
+              border: "2px solid #42a5f5 ",
+              textAlign: "center",
+              padding: "10px",
+              marginBottom: "5px",
+            }}
+          >
+            <img
+              style={{ height: "50px", width: "50px" }}
+              src={item.image}
+              alt=""
+            />
+            <small>Price :{item.price}</small>
+            <h4>{item.title}</h4>
+            <button onClick={() => removeItem(item.id)}>Remove Item</button>
+          </div>
+        ))}
       </Drawer>
     </>
   );

@@ -2,7 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Card, Button } from "antd";
 import "antd/dist/antd.css";
-import { useDispatchCart } from "./Cart";
+
+import CartContext from "./../context/cart/CartContext";
+import { useContext } from "react";
 
 const ProductShow = ({ pd }) => {
   let history = useHistory();
@@ -11,11 +13,7 @@ const ProductShow = ({ pd }) => {
   }
   const title = pd.title.substr(0, 30);
 
-  const dispatch = useDispatchCart();
-
-  const addToCart = (item) => {
-    dispatch({ type: "ADD", item });
-  };
+  const { addToCart } = useContext(CartContext);
 
   return (
     <div>
@@ -39,7 +37,7 @@ const ProductShow = ({ pd }) => {
           <p style={{ cursor: "pointer" }} onClick={() => handleClick(pd.id)}>
             {title}
           </p>
-          <Button>Add Cart</Button>
+          <Button onClick={() => addToCart(pd)}>Add Cart</Button>
         </Card>
       </div>
     </div>

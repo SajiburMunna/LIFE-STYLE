@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 //image preview
-import { Row, Col, Select, InputNumber, Button, Tabs } from "antd";
+import { Row, Col, Select, InputNumber, Button, Tabs, Form } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import Footer from "../Footer/Footer";
@@ -42,6 +42,7 @@ const Productdetails = () => {
   function callback(key) {
     console.log(key);
   }
+  function onFinish() {}
   return (
     <div>
       <div style={{ padding: "100px" }}>
@@ -65,49 +66,63 @@ const Productdetails = () => {
               {post.title}
             </h2>
             <h3>$ {post.price}</h3>
-            <div style={{ marginBottom: "10px" }}>
-              <Select
-                style={{ width: 150 }}
-                onChange={handleChange}
-                placeholder="Select to Size"
-              >
-                <Option value="1">S</Option>
-                <Option value="2">M</Option>
-                <Option value="3">L</Option>
-                <Option value="4">XL</Option>
-              </Select>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-              <Select
-                style={{ width: 150 }}
-                onChange={handleChange}
-                placeholder="Select to Color"
-              >
-                <Option value="1">white</Option>
-                <Option value="2">blue</Option>
-              </Select>
-            </div>
-            <div>
+            <Form
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={onFinish}
+            >
+              <div style={{ marginBottom: "10px" }}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Username!",
+                    },
+                  ]}
+                >
+                  <Select
+                    style={{ width: 150 }}
+                    onChange={handleChange}
+                    placeholder="Select to Size"
+                  >
+                    <Option value="1">S</Option>
+                    <Option value="2">M</Option>
+                    <Option value="3">L</Option>
+                    <Option value="4">XL</Option>
+                  </Select>
+                </Form.Item>
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <Select
+                  style={{ width: 150 }}
+                  onChange={handleChange}
+                  placeholder="Select to Color"
+                >
+                  <Option value="1">white</Option>
+                  <Option value="2">blue</Option>
+                </Select>
+              </div>
               <div>
-                <h4 style={{ float: "left", marginRight: "10px" }}>
-                  Quantity :{" "}
-                </h4>
-                <InputNumber
-                  min={1}
-                  max={10}
-                  defaultValue={0}
-                  onChange={onChange}
-                />
-                <div style={{ marginTop: "10px" }}>
-                  <Button type="primary">
-                    <ShoppingCartOutlined />
-                    Buy Now
-                  </Button>
+                <div>
+                  <h4 style={{ float: "left", marginRight: "10px" }}>
+                    Quantity :{" "}
+                  </h4>
+                  <InputNumber
+                    min={1}
+                    max={10}
+                    defaultValue={0}
+                    onChange={onChange}
+                  />
+                  <div style={{ marginTop: "10px" }}>
+                    <Button type="primary">
+                      <ShoppingCartOutlined />
+                      Buy Now
+                    </Button>
+                  </div>
                 </div>
               </div>
-
-              <Col style={{ marginTop: "10px" }}></Col>
-            </div>
+            </Form>
           </Col>
         </Row>
       </div>
