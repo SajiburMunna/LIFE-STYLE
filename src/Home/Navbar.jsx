@@ -18,17 +18,12 @@ import DrawerComponent from "./DrawerComponent";
 import { Drawer, Modal } from "antd";
 import "antd/dist/antd.css";
 
-import { Input } from "antd";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 import { Badge, Avatar } from "antd";
 import { useContext } from "react";
 
 import CartContext from "../context/cart/CartContext";
-
-const { Search } = Input;
-
-const onSearch = (value) => console.log(value);
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -93,9 +88,12 @@ const Navbar = () => {
     setVisible(false);
   };
 
-  const { cartItems, removeItem } = useContext(CartContext);
+  const { cartItems, removeItem, searchBar } = useContext(CartContext);
+
+  const [inputData, setInputData] = useState("");
 
   const totalPrice = cartItems.reduce((acc, curr) => acc + curr.price, 0);
+
   return (
     <>
       <AppBar className={classes.app}>
@@ -157,12 +155,16 @@ const Navbar = () => {
                   />
                 </Tabs>
 
-                <div style={{ margin: "auto" }}>
-                  <Search
-                    placeholder="Search Products"
-                    onSearch={onSearch}
-                    enterButton
+                <div style={{ margin: "auto", color: "black" }}>
+                  <input
+                    type="text"
+                    placeholder=" "
+                    value={inputData}
+                    onChange={(evant) =>
+                      setInputData(searchBar(evant.target.value))
+                    }
                   />
+                  {/* <button onClick={() => searchBar(inputData)}>Search</button> */}
                 </div>
                 <div style={{ marginRight: "15px" }}>
                   <Badge count={cartItems.length}>

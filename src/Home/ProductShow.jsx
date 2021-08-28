@@ -11,7 +11,7 @@ const ProductShow = ({ pd }) => {
   function handleClick(id) {
     history.push(`/productdetails/${id}`);
   }
-  const title = pd.title.substr(0, 30);
+  // const title = pd.title.substr(0, 30);
 
   const { addToCart } = useContext(CartContext);
 
@@ -35,7 +35,7 @@ const ProductShow = ({ pd }) => {
           }
         >
           <p style={{ cursor: "pointer" }} onClick={() => handleClick(pd.id)}>
-            {title}
+            {pd.title}
           </p>
           <Button onClick={() => addToCart(pd)}>Add Cart</Button>
         </Card>
