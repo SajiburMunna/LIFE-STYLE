@@ -6,6 +6,8 @@ import "antd/dist/antd.css";
 import CartContext from "./../context/cart/CartContext";
 import { useContext } from "react";
 
+import "./Pagination.css";
+
 const ProductShow = ({ pd }) => {
   let history = useHistory();
   function handleClick(id) {

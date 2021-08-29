@@ -7,7 +7,7 @@ const CartState = ({ children }) => {
   const initalState = {
     showCart: false,
     cartItems: [],
-    search: [],
+    search: "",
   };
 
   const [state, dispatch] = useReducer(CartReducer, initalState);

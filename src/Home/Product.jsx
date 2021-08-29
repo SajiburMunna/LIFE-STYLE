@@ -38,6 +38,7 @@ const Product = () => {
   const pageVisited = pageNumber * userPerPage;
 
   const displayUsers = post.slice(pageVisited, pageVisited + userPerPage);
+  console.log(displayUsers);
 
   const pageCount = Math.ceil(post.length / userPerPage);
   const changePage = ({ selected }) => {
@@ -57,17 +58,18 @@ const Product = () => {
         </div>
         <Row gutter={[16, 16]}>
           {post
+            .slice(pageVisited, pageVisited + userPerPage)
             .filter((p) => {
-              if (search == null) {
+              if (search === "") {
                 return p;
-              } else if (p.category.includes(search)) {
+              } else if (p.title.toLowerCase().includes(search.toLowerCase())) {
                 return p;
               }
             })
 
             // eslint-disable-next-line array-callback-return
 
-            .map((p) => (
+            .map((pd) => (
               <Col
                 xs={{ span: 24 }}
                 sm={{ span: 12 }}
@@ -75,7 +77,7 @@ const Product = () => {
                 lg={{ span: 6 }}
                 key={Math.random()}
               >
-                <ProductShow pd={p}></ProductShow>
+                <ProductShow pd={pd}></ProductShow>
               </Col>
             ))}
         </Row>

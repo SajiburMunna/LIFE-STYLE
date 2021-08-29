@@ -160,11 +160,9 @@ const Navbar = () => {
                     type="text"
                     placeholder=" "
                     value={inputData}
-                    onChange={(evant) =>
-                      setInputData(searchBar(evant.target.value))
-                    }
+                    onChange={(evant) => setInputData(evant.target.value)}
                   />
-                  {/* <button onClick={() => searchBar(inputData)}>Search</button> */}
+                  <button onClick={() => searchBar(inputData)}>Search</button>
                 </div>
                 <div style={{ marginRight: "15px" }}>
                   <Badge count={cartItems.length}>
