@@ -5,6 +5,7 @@ import Women from "./Home/Women";
 import Navbar from "./Home/Navbar";
 import NotFound from "./Home/NotFound";
 import Productdetails from "./Home/Productdetails";
+import Login from "./LogForm/Login";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/productdetails/:id">
             <Productdetails> </Productdetails>
+          </Route>
+          <Route path="/log">
+            <Login></Login>
           </Route>
 
           <Route path="*">

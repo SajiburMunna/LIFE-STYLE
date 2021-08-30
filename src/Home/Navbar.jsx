@@ -15,7 +15,7 @@ import {
 
 import DrawerComponent from "./DrawerComponent";
 
-import { Drawer, Modal } from "antd";
+import { Drawer } from "antd";
 import "antd/dist/antd.css";
 
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
@@ -61,20 +61,6 @@ const Navbar = () => {
     //The second value contains the current index
     console.log(value1);
     setValue1(newValue);
-  };
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
   };
 
   //
@@ -176,7 +162,6 @@ const Navbar = () => {
                   </Badge>
                 </div>
                 <div
-                  onClick={showModal}
                   style={{
                     color: "white",
                     fontSize: "40px",
@@ -184,19 +169,11 @@ const Navbar = () => {
                     marginRight: "30px",
                   }}
                 >
-                  <UserOutlined />
-                </div>
-                <div>
-                  <Modal
-                    title="Login"
-                    visible={isModalVisible}
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                  >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                  </Modal>
+                  <UserOutlined
+                    onClick={() => {
+                      handleClick("/log");
+                    }}
+                  />
                 </div>
               </>
             )}
@@ -204,7 +181,7 @@ const Navbar = () => {
         </div>
       </AppBar>
       <Drawer
-        title={`ADD CART-Total-${totalPrice}$`}
+        title={`--------ADD CART--------Total Price : ${totalPrice}$ Qunatity : ${cartItems.length}`}
         placement="right"
         closable={false}
         onClose={onClose}
@@ -225,11 +202,16 @@ const Navbar = () => {
               src={item.image}
               alt=""
             />
-            <small>Price :{item.price}</small>
+            <small>Price :{item.price}/</small>
+            <small>Qty :{cartItems.length}</small>
             <h4>{item.title}</h4>
             <button onClick={() => removeItem(item.id)}>Remove Item</button>
           </div>
         ))}
+        <div style={{ textAlign: "center", padding: "10px" }}>
+          <button>View Cart</button>
+          <button>Check Out</button>
+        </div>
       </Drawer>
     </>
   );
