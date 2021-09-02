@@ -51,7 +51,7 @@ const Product = () => {
     <>
       <div style={{ padding: "60px" }}>
         <Divider orientation="center" dashed>
-          <h1>ALL PRODUCTS</h1>
+          <h1 style={{ color: "#012a4a" }}>ALL PRODUCTS</h1>
         </Divider>
         <div style={{ textAlign: "center" }}>
           {loading && <Spin size="large"></Spin>}
@@ -82,7 +82,9 @@ const Product = () => {
             ))}
         </Row>
       </div>
-      <BackTop></BackTop>
+      <BackTop
+        style={{ color: "#012a4a", backgroundColor: "#012a4a" }}
+      ></BackTop>
       {!loading && (
         <div>
           <ReactPaginate

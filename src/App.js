@@ -6,6 +6,7 @@ import Navbar from "./Home/Navbar";
 import NotFound from "./Home/NotFound";
 import Productdetails from "./Home/Productdetails";
 import Login from "./LogForm/Login";
+import Cart from "./Home/Cart";
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
           </Route>
           <Route path="/log">
             <Login></Login>
+          </Route>
+
+          <Route path="/cart">
+            <Cart></Cart>
           </Route>
 
           <Route path="*">

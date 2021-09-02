@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useHistory } from "react-router-dom";
-import blue from "@material-ui/core/colors/blue";
+
 import logo from "../Image/logo.png";
 import {
   AppBar,
@@ -18,7 +18,11 @@ import DrawerComponent from "./DrawerComponent";
 import { Drawer } from "antd";
 import "antd/dist/antd.css";
 
-import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  ShoppingCartOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
 
 import { Badge, Avatar } from "antd";
 import { useContext } from "react";
@@ -37,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.4rem",
   },
   toolbar: theme.mixins.toolbar,
-  app: { backgroundColor: blue[400] },
+  app: { backgroundColor: "#012a4a" },
   color: { color: "#fff" },
 }));
 
@@ -47,6 +51,10 @@ const Navbar = () => {
   const value = ["/", "/men", "/women"];
 
   function handleClick(click) {
+    history.push(click);
+  }
+
+  function cartClick(click) {
     history.push(click);
   }
 
@@ -150,11 +158,19 @@ const Navbar = () => {
                   />
                   <button onClick={() => searchBar(inputData)}>Search</button>
                 </div>
-                <div style={{ marginRight: "15px" }}>
+                <div
+                  style={{
+                    marginRight: "15px",
+                    height: "35px",
+                  }}
+                >
                   <Badge count={cartItems.length}>
                     <Avatar
                       onClick={showDrawer}
-                      style={{ backgroundColor: "white", color: "#42a5f5" }}
+                      style={{
+                        backgroundColor: "white",
+                        color: " #012a4a",
+                      }}
                       shape="square"
                       size="large"
                       icon={<ShoppingCartOutlined />}
@@ -164,7 +180,7 @@ const Navbar = () => {
                 <div
                   style={{
                     color: "white",
-                    fontSize: "40px",
+                    fontSize: "25px",
                     cursor: "pointer",
                     marginRight: "30px",
                   }}
@@ -180,39 +196,58 @@ const Navbar = () => {
           </Toolbar>
         </div>
       </AppBar>
-      <Drawer
-        title={`--------ADD CART--------Total Price : ${totalPrice}$ Qunatity : ${cartItems.length}`}
-        placement="right"
-        closable={false}
-        onClose={onClose}
-        visible={visible}
-        zIndex={2000}
-      >
-        {cartItems.map((item) => (
-          <div
-            style={{
-              border: "2px solid #42a5f5 ",
-              textAlign: "center",
-              padding: "10px",
-              marginBottom: "5px",
-            }}
-          >
-            <img
-              style={{ height: "50px", width: "50px" }}
-              src={item.image}
-              alt=""
-            />
-            <small>Price :{item.price}/</small>
-            <small>Qty :{cartItems.length}</small>
-            <h4>{item.title}</h4>
-            <button onClick={() => removeItem(item.id)}>Remove Item</button>
+      <div>
+        <Drawer
+          title={`--------ADD CART--------Total Price : ${totalPrice}$ Qunatity : ${cartItems.length}`}
+          placement="right"
+          closable={false}
+          onClose={onClose}
+          visible={visible}
+          zIndex={2000}
+        >
+          {cartItems.map((item) => (
+            <div
+              style={{
+                border: "2px solid #012a4a ",
+                textAlign: "center",
+                padding: "10px",
+                marginBottom: "5px",
+                height: "70px",
+              }}
+            >
+              <button
+                style={{
+                  background: "none",
+                  border: "none",
+                  float: "right",
+                  color: "red",
+                }}
+                onClick={() => removeItem(item.id)}
+              >
+                <CloseOutlined />
+              </button>
+              <img
+                style={{ height: "50px", width: "30px", float: "left" }}
+                src={item.image}
+                alt=""
+              />
+              <small>Price :{item.price}/</small>
+
+              <small>{item.title.slice(0, 25)}</small>
+            </div>
+          ))}
+          <div style={{ textAlign: "center", padding: "10px" }}>
+            <button
+              onClick={() => {
+                cartClick("/cart");
+              }}
+            >
+              View Cart
+            </button>
+            <button>Check Out</button>
           </div>
-        ))}
-        <div style={{ textAlign: "center", padding: "10px" }}>
-          <button>View Cart</button>
-          <button>Check Out</button>
-        </div>
-      </Drawer>
+        </Drawer>
+      </div>
     </>
   );
 };

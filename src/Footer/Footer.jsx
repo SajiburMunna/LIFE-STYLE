@@ -5,7 +5,8 @@ import { Row, Col, Divider } from "antd";
 import { FacebookFilled, TwitterSquareFilled } from "@ant-design/icons";
 
 const style = {
-  background: "#0092ff",
+  background: "#012a4a",
+  color: "#e8e8e8",
   padding: "5px 0",
   textAlign: "center",
   marginTop: "20px",
@@ -13,7 +14,7 @@ const style = {
 
 const Footer = () => {
   return (
-    <div style={{ backgroundColor: "black", padding: "60px" }}>
+    <div style={{ backgroundColor: "#e8e8e8", padding: "60px" }}>
       <Row gutter={[16, 16]}>
         <Col
           xs={{ span: 24 }}
@@ -23,7 +24,7 @@ const Footer = () => {
         >
           <h5 style={style}>ABOUT US</h5>
           <div>
-            <h5 style={{ color: "white" }}>
+            <h5 style={{ color: "#012a4a" }}>
               RISE is a modern lifestyle clothing brand that puts emphasis on
               style and fashion. RISE infuses street culture with national and
               traditional styling.RISE represents one thing; pride in yourself.
@@ -39,25 +40,27 @@ const Footer = () => {
         >
           <h5 style={style}>RECENT POSTS</h5>
           <div>
-            <h5 style={{ color: "white" }}>
+            <h5 style={{ color: "#012a4a" }}>
               Bangladesh makes a fashion statement – Nikkei Asian Review
             </h5>
           </div>
           <Divider
             type="horizontal"
             dashed
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "#012a4a" }}
           />
           <div>
-            <h5 style={{ color: "white" }}>টি-শার্টে বিশ্বকাপ – Dhaka Times</h5>
+            <h5 style={{ color: "#012a4a" }}>
+              টি-শার্টে বিশ্বকাপ – Dhaka Times
+            </h5>
           </div>
           <Divider
             type="horizontal"
             dashed
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "#012a4a" }}
           />
           <div>
-            <h5 style={{ color: "white" }}>
+            <h5 style={{ color: "#012a4a" }}>
               Rise | Meet the Roadies – ICE TODAY
             </h5>
           </div>
@@ -71,23 +74,23 @@ const Footer = () => {
         >
           <h5 style={style}>INFORMATION</h5>
           <div>
-            <h5 style={{ color: "white" }}>ABOUT US</h5>
+            <h5 style={{ color: "#012a4a" }}>ABOUT US</h5>
           </div>
           <Divider
             type="horizontal"
             dashed
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "#012a4a" }}
           />
           <div>
-            <h5 style={{ color: "white" }}>CONTACT US</h5>
+            <h5 style={{ color: "#012a4a" }}>CONTACT US</h5>
           </div>
           <Divider
             type="horizontal"
             dashed
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "#012a4a" }}
           />
           <div>
-            <h5 style={{ color: "white" }}>BLOG</h5>
+            <h5 style={{ color: "#012a4a" }}>BLOG</h5>
           </div>
         </Col>
 
@@ -101,6 +104,7 @@ const Footer = () => {
           <div>
             <h2>
               <a
+                style={{ color: "#012a4a" }}
                 href="https://www.facebook.com/risebrandclothing"
                 rel="noreferrer"
                 target="_blank"
@@ -116,6 +120,7 @@ const Footer = () => {
                 href="https://www.facebook.com/risebrandclothing"
                 rel="noreferrer"
                 target="_blank"
+                style={{ color: "#012a4a" }}
               >
                 <TwitterSquareFilled /> Twitter
               </a>

@@ -24,6 +24,7 @@ const ProductShow = ({ pd }) => {
           hoverable
           style={{
             textAlign: "center",
+            backgroundColor: "#e8e8e8",
 
             height: "400px",
           }}
@@ -37,9 +38,11 @@ const ProductShow = ({ pd }) => {
           }
         >
           <p style={{ cursor: "pointer" }} onClick={() => handleClick(pd.id)}>
-            {pd.title}
+            {pd.title.slice(0, 25)}
           </p>
-          <Button onClick={() => addToCart(pd)}>Add Cart</Button>
+          <Button style={{ color: "#012a4a" }} onClick={() => addToCart(pd)}>
+            Add Cart
+          </Button>
         </Card>
       </div>
     </div>
