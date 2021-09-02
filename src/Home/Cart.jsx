@@ -30,7 +30,9 @@ const Cart = () => {
         </Card>
       </div>
       {!cartItems.length ? (
-        <h1 style={{ padding: "100px" }}>Your Cart Is Currently Empty </h1>
+        <h1 style={{ padding: "100px" }}>
+          Your Cart Is Currently <span style={{ color: "red" }}>Empty!</span>
+        </h1>
       ) : (
         cartItems.map((item) => (
           <Card
