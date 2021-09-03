@@ -30,7 +30,8 @@ const Product = () => {
         console.log(err);
       });
   }, []);
-  // const result = post.filter((pd) => pd.category === "electronics");
+
+  console.log(post);
 
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -66,8 +67,6 @@ const Product = () => {
                 return p;
               }
             })
-
-            // eslint-disable-next-line array-callback-return
 
             .map((pd) => (
               <Col

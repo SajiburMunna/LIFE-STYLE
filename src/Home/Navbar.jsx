@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useHistory } from "react-router-dom";
 
-import logo from "../Image/logo.png";
+import logoof from "../Image/logoof.png";
 import {
   AppBar,
   makeStyles,
@@ -22,6 +22,7 @@ import {
   UserOutlined,
   ShoppingCartOutlined,
   CloseOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 
 import { Badge, Avatar } from "antd";
@@ -32,7 +33,7 @@ import CartContext from "../context/cart/CartContext";
 const useStyles = makeStyles((theme) => ({
   logo: {
     fontSize: "1.9rem",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("sm")]: {
       fontSize: "1.1rem",
     },
   },
@@ -54,7 +55,7 @@ const Navbar = () => {
     history.push(click);
   }
 
-  function cartClick(click) {
+  function Click(click) {
     history.push(click);
   }
 
@@ -93,14 +94,17 @@ const Navbar = () => {
       <AppBar className={classes.app}>
         <div>
           <Toolbar>
-            <a href="/">
+            <div style={{ float: "left" }}>
               <img
-                style={{ height: "50px", marginRight: "10px" }}
-                src={logo}
+                style={{
+                  height: "100px",
+                  width: "100px",
+                  marginRight: "10px",
+                }}
+                src={logoof}
                 alt=""
               />
-            </a>
-
+            </div>
             {isMatch ? (
               <>
                 <DrawerComponent />
@@ -151,17 +155,32 @@ const Navbar = () => {
 
                 <div style={{ margin: "auto", color: "black" }}>
                   <input
+                    style={{
+                      border: "none",
+                      borderRadius: "10px",
+                      textAlign: "center",
+                    }}
                     type="text"
-                    placeholder=" "
+                    placeholder="Search Your Products"
                     value={inputData}
                     onChange={(evant) => setInputData(evant.target.value)}
                   />
-                  <button onClick={() => searchBar(inputData)}>Search</button>
+                  <button
+                    style={{
+                      border: "none",
+                      borderRadius: "10px",
+                      marginLeft: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => searchBar(inputData)}
+                  >
+                    <SearchOutlined />
+                  </button>
                 </div>
                 <div
                   style={{
                     marginRight: "15px",
-                    height: "35px",
+                    cursor: "pointer",
                   }}
                 >
                   <Badge count={cartItems.length}>
@@ -172,7 +191,7 @@ const Navbar = () => {
                         color: " #012a4a",
                       }}
                       shape="square"
-                      size="large"
+                      size="small"
                       icon={<ShoppingCartOutlined />}
                     />
                   </Badge>
@@ -198,8 +217,7 @@ const Navbar = () => {
       </AppBar>
       <div>
         <Drawer
-          title={`--------ADD CART--------Total Price : ${totalPrice}$ Qunatity : ${cartItems.length}`}
-          placement="right"
+          title="ADD CART"
           closable={false}
           onClose={onClose}
           visible={visible}
@@ -221,6 +239,7 @@ const Navbar = () => {
                   border: "none",
                   float: "right",
                   color: "red",
+                  cursor: "pointer",
                 }}
                 onClick={() => removeItem(item.id)}
               >
@@ -236,15 +255,41 @@ const Navbar = () => {
               <small>{item.title.slice(0, 25)}</small>
             </div>
           ))}
-          <div style={{ textAlign: "center", padding: "10px" }}>
+          <div style={{ textAlign: "center" }}>
+            <p>Total Price : ${totalPrice}</p>
+
             <button
+              style={{
+                border: "none",
+                marginRight: "10px",
+                borderRadius: "10px",
+                color: "white",
+                backgroundColor: "#012a4a ",
+                padding: "5px",
+                cursor: "pointer",
+              }}
               onClick={() => {
-                cartClick("/cart");
+                Click("/cart");
               }}
             >
               View Cart
             </button>
-            <button>Check Out</button>
+            <button
+              style={{
+                border: "none",
+                marginRight: "10px",
+                borderRadius: "10px",
+                color: "white",
+                backgroundColor: "#012a4a ",
+                padding: "5px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                Click("/checkout");
+              }}
+            >
+              Check Out
+            </button>
           </div>
         </Drawer>
       </div>

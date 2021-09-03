@@ -9,8 +9,6 @@ const CartReducer = (state, action) => {
       };
     }
     case ADD_TO_CART: {
-      state.cartItems.find((item) => item.id === action.payload.id);
-
       return {
         ...state,
         cartItems: [...state.cartItems, action.payload],

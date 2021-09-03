@@ -38,7 +38,7 @@ const Women = () => {
     <>
       <div style={{ padding: "60px" }}>
         <Divider orientation="center" dashed>
-          <h1>WOMEN'S PRODUCTS</h1>
+          <h1 style={{ color: "#012a4a" }}>WOMEN'S PRODUCTS</h1>
         </Divider>
         <div style={{ textAlign: "center" }}>
           {loading && <Spin size="large"></Spin>}
@@ -58,6 +58,7 @@ const Women = () => {
                   textAlign: "center",
                   boxShadow: " ",
                   height: "400px",
+                  backgroundColor: "#e8e8e8",
                 }}
                 hoverable
                 cover={

@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ marginTop: "100px" }}>
       <Banner></Banner>
       <div
         style={{
@@ -17,8 +17,10 @@ const Home = () => {
       >
         <BannerButton></BannerButton>
       </div>
+      <div>
+        <Product></Product>
+      </div>
 
-      <Product></Product>
       <Footer></Footer>
     </div>
   );
