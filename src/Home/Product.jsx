@@ -24,7 +24,6 @@ const Product = () => {
       .then((res) => {
         setPost(res.data);
         setLoading(false);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -38,8 +37,7 @@ const Product = () => {
   const userPerPage = 8;
   const pageVisited = pageNumber * userPerPage;
 
-  const displayUsers = post.slice(pageVisited, pageVisited + userPerPage);
-  console.log(displayUsers);
+  // const displayUsers = post.slice(pageVisited, pageVisited + userPerPage);
 
   const pageCount = Math.ceil(post.length / userPerPage);
   const changePage = ({ selected }) => {
@@ -76,7 +74,7 @@ const Product = () => {
                 lg={{ span: 6 }}
                 key={Math.random()}
               >
-                <ProductShow pd={pd}></ProductShow>
+                <ProductShow pd={{ ...pd, qty: 1 }}></ProductShow>
               </Col>
             ))}
         </Row>

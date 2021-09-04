@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -9,10 +9,16 @@ import { Row, Col, Select, InputNumber, Button, Tabs, Form } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import Footer from "../Footer/Footer";
+import CartContext from "./../context/cart/CartContext";
+
 const { TabPane } = Tabs;
 
 const Productdetails = () => {
+  const { addToCart } = useContext(CartContext);
+
+  const [size1, setSize] = useState("");
   const { id } = useParams();
+  console.log("size" + size1);
 
   const [post, setPost] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -29,15 +35,15 @@ const Productdetails = () => {
         console.log(err);
       });
   }, [id]);
+  console.log(post);
 
   const { Option } = Select;
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
+    setSize(value);
   }
-  function onChange(value) {
-    console.log("changed", value);
-  }
+  function onChange(value) {}
 
   function callback(key) {
     console.log(key);
@@ -86,10 +92,10 @@ const Productdetails = () => {
                     onChange={handleChange}
                     placeholder="Select to Size"
                   >
-                    <Option value="1">S</Option>
-                    <Option value="2">M</Option>
-                    <Option value="3">L</Option>
-                    <Option value="4">XL</Option>
+                    <Option value="S">S</Option>
+                    <Option value="M">M</Option>
+                    <Option value="L">L</Option>
+                    <Option value="XL">XL</Option>
                   </Select>
                 </Form.Item>
               </div>
@@ -115,7 +121,10 @@ const Productdetails = () => {
                     onChange={onChange}
                   />
                   <div style={{ marginTop: "10px" }}>
-                    <Button type="primary">
+                    <Button
+                      onClick={() => addToCart({ ...post, size: size1 })}
+                      type="primary"
+                    >
                       <ShoppingCartOutlined />
                       Buy Now
                     </Button>

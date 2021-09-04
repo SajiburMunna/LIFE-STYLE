@@ -84,6 +84,7 @@ const Navbar = () => {
   };
 
   const { cartItems, removeItem, searchBar } = useContext(CartContext);
+  console.log(cartItems);
 
   const [inputData, setInputData] = useState("");
 
@@ -115,9 +116,9 @@ const Navbar = () => {
                   onChange={handleClickTab}
                   className={classes.tabsContainer}
                   value={
-                    history.location.pathname !== "/home"
-                      ? history.location.pathname
-                      : false
+                    history.location.pathname === "/cart"
+                      ? null
+                      : history.location.pathname
                   }
                   TabIndicatorProps={{
                     style: {
@@ -253,6 +254,8 @@ const Navbar = () => {
               <small>Price :{item.price}/</small>
 
               <small>{item.title.slice(0, 25)}</small>
+              <small>Size: {item.size}</small>
+              <small>qty:{item.qty}</small>
             </div>
           ))}
           <div style={{ textAlign: "center" }}>

@@ -1,4 +1,10 @@
-import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM, SEARCH } from "../Types";
+import {
+  SHOW_HIDE_CART,
+  ADD_TO_CART,
+  REMOVE_ITEM,
+  SEARCH,
+  ADDSIZE,
+} from "../Types";
 
 const CartReducer = (state, action) => {
   switch (action.type) {
@@ -9,9 +15,18 @@ const CartReducer = (state, action) => {
       };
     }
     case ADD_TO_CART: {
+      const inCart = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: inCart
+          ? state.cartItems.map((item) =>
+              item.id === action.payload.id
+                ? { ...item, qty: item.qty + 1 }
+                : item
+            )
+          : [...state.cartItems, action.payload],
       };
     }
     case REMOVE_ITEM: {
@@ -25,6 +40,13 @@ const CartReducer = (state, action) => {
       return {
         ...state,
         search: action.payload,
+      };
+    }
+
+    case ADDSIZE: {
+      return {
+        ...state,
+        size: action.payload,
       };
     }
 
