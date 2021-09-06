@@ -1,0 +1,39 @@
+.back {
+  background-image: url(./back.gif);
+  background-size: cover;
+
+  margin-top: 100px;
+  height: 500px;
+}
+.div-center {
+  width: 300px;
+  margin: auto;
+}
+.label {
+  margin-right: 10px;
+  color: white;
+  text-align: left;
+}
+.input {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-bottom: 20px;
+  height: 25px;
+}
+
+.required {
+  color: red;
+}
+.button {
+  border: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

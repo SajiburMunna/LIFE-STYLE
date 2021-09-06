@@ -5,9 +5,13 @@ import Women from "./Home/Women";
 import Navbar from "./Home/Navbar";
 import NotFound from "./Home/NotFound";
 import Productdetails from "./Home/Productdetails";
-import Login from "./LogForm/Login";
+
 import Cart from "./Home/Cart";
 import CheckOut from "./Home/CheckOut";
+import SignIn from "./LogForm/SignIn";
+
+import "./LogForm/Form.css";
+import Footer from "../src/Footer/Footer";
 
 function App() {
   return (
@@ -28,7 +32,12 @@ function App() {
             <Productdetails> </Productdetails>
           </Route>
           <Route path="/log">
-            <Login></Login>
+            <div className="back">
+              <SignIn></SignIn>
+              <div style={{ marginTop: "70px" }}>
+                <Footer></Footer>
+              </div>
+            </div>
           </Route>
 
           <Route path="/cart">

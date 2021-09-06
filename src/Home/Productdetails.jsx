@@ -16,9 +16,10 @@ const { TabPane } = Tabs;
 const Productdetails = () => {
   const { addToCart } = useContext(CartContext);
 
-  const [size1, setSize] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [qty, setQty] = useState(1);
   const { id } = useParams();
-  console.log("size" + size1);
 
   const [post, setPost] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -27,7 +28,7 @@ const Productdetails = () => {
     axios
       .get(`https://fakestoreapi.com/products/ ${id}`)
       .then((res) => {
-        setPost(res.data);
+        setPost({ ...res.data, qty: 1 });
         // setLoading(false);
         console.log(res);
       })
@@ -39,11 +40,17 @@ const Productdetails = () => {
 
   const { Option } = Select;
 
-  function handleChange(value) {
+  function handleChangeSize(value) {
     // console.log(`selected ${value}`);
     setSize(value);
   }
-  function onChange(value) {}
+  function handleChangeColor(value) {
+    // console.log(`selected ${value}`);
+    setColor(value);
+  }
+  function handleChangeQuantity(value) {
+    setQty(value);
+  }
 
   function callback(key) {
     console.log(key);
@@ -89,7 +96,7 @@ const Productdetails = () => {
                 >
                   <Select
                     style={{ width: 150 }}
-                    onChange={handleChange}
+                    onChange={handleChangeSize}
                     placeholder="Select to Size"
                   >
                     <Option value="S">S</Option>
@@ -102,11 +109,11 @@ const Productdetails = () => {
               <div style={{ marginBottom: "10px" }}>
                 <Select
                   style={{ width: 150 }}
-                  onChange={handleChange}
+                  onChange={handleChangeColor}
                   placeholder="Select to Color"
                 >
-                  <Option value="1">white</Option>
-                  <Option value="2">blue</Option>
+                  <Option value="White">White</Option>
+                  <Option value="White">Black</Option>
                 </Select>
               </div>
               <div>
@@ -117,13 +124,21 @@ const Productdetails = () => {
                   <InputNumber
                     min={1}
                     max={10}
-                    defaultValue={0}
-                    onChange={onChange}
+                    defaultValue={1}
+                    onChange={handleChangeQuantity}
                   />
                   <div style={{ marginTop: "10px" }}>
                     <Button
-                      onClick={() => addToCart({ ...post, size: size1 })}
-                      type="primary"
+                      onClick={() =>
+                        size && color
+                          ? addToCart({
+                              ...post,
+                              size: size,
+                              color: color,
+                              qty: qty,
+                            })
+                          : alert("Select Your Size and Color")
+                      }
                     >
                       <ShoppingCartOutlined />
                       Buy Now
@@ -137,25 +152,41 @@ const Productdetails = () => {
       </div>
       <div style={{ marginBottom: "30px" }}>
         <Tabs
+          style={{ font: "#012a4a" }}
           tabPosition="left"
           size="large"
           defaultActiveKey="1"
           onChange={callback}
         >
-          <TabPane tab="DESCRIPTION" key="1">
+          <TabPane
+            tab={
+              <span style={{ color: "#012a4a", borderColor: "black" }}>
+                DESCRIPTION
+              </span>
+            }
+            key="1"
+          >
             <div style={{ textAlign: "center" }}>
-              <h2> DESCRIPTION</h2>
+              <h2 style={{ color: "#012a4a" }}> DESCRIPTION</h2>
               <p>{post.description}</p>
             </div>
           </TabPane>
-          <TabPane tab="ADDITIONAL INFORMATION" key="2">
+          <TabPane
+            tab={
+              <span style={{ color: "#012a4a" }}>ADDITIONAL INFORMATION</span>
+            }
+            key="2"
+          >
             <div style={{ textAlign: "center" }}>
               <h2> ADDITIONAL INFORMATION</h2>
               <p>{post.title}</p>
               Price: ${post.price} Category: {post.category}
             </div>
           </TabPane>
-          <TabPane tab="REVIEWS" key="3">
+          <TabPane
+            tab={<span style={{ color: "#012a4a" }}>REVIEWS</span>}
+            key="3"
+          >
             <div style={{ textAlign: "center" }}>
               <h2>REVIEWS</h2>
               <p>No Reviews Yet Now!</p>

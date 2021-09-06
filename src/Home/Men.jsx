@@ -5,13 +5,13 @@ import axios from "axios";
 import { Row, Col, Card, Button, Spin, Divider } from "antd";
 import Footer from "../Footer/Footer";
 import { useHistory } from "react-router-dom";
+import CartContext from "./../context/cart/CartContext";
+import { useContext } from "react";
 
 const Men = () => {
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const men = post.filter((pd) => pd.category === "men's clothing");
-
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -29,6 +29,8 @@ const Men = () => {
   function handleClick(id) {
     history.push(`/productdetails/${id}`);
   }
+
+  const { addToCart } = useContext(CartContext);
 
   return (
     <>
@@ -49,7 +51,6 @@ const Men = () => {
               lg={{ span: 6 }}
             >
               <Card
-                onClick={() => handleClick(p.id)}
                 style={{
                   textAlign: "center",
                   boxShadow: " ",
@@ -59,14 +60,21 @@ const Men = () => {
                 hoverable
                 cover={
                   <img
-                    style={{ height: "250px", padding: "10px" }}
+                    onClick={() => handleClick(p.id)}
+                    style={{
+                      height: "250px",
+                      padding: "10px",
+                      cursor: "pointer",
+                    }}
                     alt="example"
                     src={p.image}
                   />
                 }
               >
-                <p>{p.title}</p>
-                <Button>Add Cart</Button>
+                <p onClick={() => handleClick(p.id)}>{p.title.slice(0, 25)}</p>
+                <Button onClick={() => addToCart({ ...p, qty: 1 })}>
+                  Add Cart
+                </Button>
               </Card>
             </Col>
           ))}

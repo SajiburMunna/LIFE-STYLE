@@ -4,6 +4,7 @@ import {
   REMOVE_ITEM,
   SEARCH,
   ADDSIZE,
+  CLEARCART,
 } from "../Types";
 
 const CartReducer = (state, action) => {
@@ -47,6 +48,13 @@ const CartReducer = (state, action) => {
       return {
         ...state,
         size: action.payload,
+      };
+    }
+
+    case CLEARCART: {
+      return {
+        ...state,
+        cartItems: [],
       };
     }
 

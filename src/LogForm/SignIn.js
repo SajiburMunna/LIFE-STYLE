@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import "../LogForm/Form.css";
-import SignIn from "./SignIn";
+import SignUp from "../LogForm/SignUp";
+
 const validate = (values) => {
   const errors = {};
   if (!values.userName) {
@@ -31,7 +32,7 @@ const validate = (values) => {
   return errors;
 };
 
-function SignUp() {
+const SignIn = () => {
   const [form, setForm] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -46,10 +47,10 @@ function SignUp() {
   return (
     <div>
       {form ? (
-        <SignIn></SignIn>
+        <SignUp></SignUp>
       ) : (
         <div className="div-center">
-          <h1 style={{ color: "white" }}> SIGNUP</h1>
+          <h1 style={{ color: "white" }}> SIGNIN</h1>
 
           <form onSubmit={formik.handleSubmit}>
             <label className="label" htmlFor="email">
@@ -92,24 +93,27 @@ function SignUp() {
                 className="button"
                 type="submit"
               >
-                SignUp
+                SignIn
               </button>
             </div>
           </form>
           <p>
-            Already have an account ?
+            Create an account ?
             <button
               className="button"
               style={{ marginLeft: "3px", cursor: "pointer" }}
               onClick={() => setForm(true)}
             >
-              SignIn
+              Sign Up
             </button>
           </p>
+          <a style={{ color: "red" }} href="/f">
+            Forgot Password?
+          </a>
         </div>
       )}
     </div>
   );
-}
+};
 
-export default SignUp;
+export default SignIn;

@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Row, Col, Card, Button, Spin, Divider } from "antd";
-
 import { useHistory } from "react-router-dom";
+import CartContext from "./../context/cart/CartContext";
+import { useContext } from "react";
 
 const Women = () => {
   const [post, setPost] = useState([]);
@@ -15,15 +16,12 @@ const Women = () => {
   const womenclothing = post.filter((p) => p.category === "women's clothing");
   const women = [...womenclothing, ...jewelery];
 
-  console.log(women);
-
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
         setPost(res.data);
         setLoading(false);
-        console.log(res);
       })
       .catch((err) => {
         // console.log(err);
@@ -34,6 +32,8 @@ const Women = () => {
   function handleClick(id) {
     history.push(`/productdetails/${id}`);
   }
+
+  const { addToCart } = useContext(CartContext);
   return (
     <>
       <div style={{ padding: "60px" }}>
@@ -53,7 +53,6 @@ const Women = () => {
               lg={{ span: 6 }}
             >
               <Card
-                onClick={() => handleClick(p.id)}
                 style={{
                   textAlign: "center",
                   boxShadow: " ",
@@ -63,15 +62,22 @@ const Women = () => {
                 hoverable
                 cover={
                   <img
-                    style={{ height: "250px", padding: "10px" }}
+                    onClick={() => handleClick(p.id)}
+                    style={{
+                      height: "250px",
+                      padding: "10px",
+                      cursor: "pointer",
+                    }}
                     alt="example"
                     title="Women's Products"
                     src={p.image}
                   ></img>
                 }
               >
-                <p>{p.title}</p>
-                <Button>Add Cart</Button>
+                <p onClick={() => handleClick(p.id)}>{p.title.slice(0, 25)}</p>
+                <Button onClick={() => addToCart({ ...p, qty: 1 })}>
+                  Add Cart
+                </Button>
               </Card>
             </Col>
           ))}

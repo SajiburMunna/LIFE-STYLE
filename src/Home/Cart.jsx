@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import CartContext from "../context/cart/CartContext";
 
@@ -10,7 +10,20 @@ import { CloseOutlined, ClearOutlined } from "@ant-design/icons";
 import Footer from "../Footer/Footer";
 
 const Cart = () => {
-  const { cartItems, removeItem } = useContext(CartContext);
+  const { cartItems, removeItem, clearCart } = useContext(CartContext);
+  const [totalQty, setTotalQty] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    let item = 0;
+    let price = 0;
+
+    cartItems.forEach((items) => {
+      item += items.qty;
+      price += items.qty * items.price;
+    });
+    setTotalQty(item);
+    setTotalPrice(price);
+  }, [cartItems, totalPrice, totalQty, setTotalQty, setTotalPrice]);
   return (
     <div>
       <div style={{ padding: "100px" }}>
@@ -19,15 +32,18 @@ const Cart = () => {
             style={{ color: "#012a4a ", width: "300px" }}
             title="Cart Totals"
             extra={
-              <Button style={{ color: "red" }}>
+              <Button
+                onClick={() => {
+                  clearCart();
+                }}
+                style={{ color: "red" }}
+              >
                 <ClearOutlined />
               </Button>
             }
           >
-            <h5 style={{ color: "#012a4a " }}>
-              Total Qunatity :{cartItems.length}
-            </h5>
-            <h5 style={{ color: "#012a4a " }}>Total Price : </h5>
+            <h5 style={{ color: "#012a4a " }}>Total Qunatity :{totalQty}</h5>
+            <h5 style={{ color: "#012a4a " }}>Total Price : {totalPrice} </h5>
             <div style={{ float: "right" }}>
               <Button style={{ backgroundColor: "#012a4a ", color: "white" }}>
                 {" "}
@@ -67,8 +83,14 @@ const Cart = () => {
                   ></Image>
                 </div>
                 <div>
-                  <small>{item.title}</small>
-                  <h2> Price: {item.price}$ </h2>
+                  <small>{item.title.slice(0, 25)}</small>
+                  <h2>
+                    {item.qty} × {item.price} $
+                  </h2>
+                  <small>
+                    Size : {item.size} - Color : {item.color}
+                  </small>
+                  <small></small>
                 </div>
               </Card>
             ))

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -84,11 +84,21 @@ const Navbar = () => {
   };
 
   const { cartItems, removeItem, searchBar } = useContext(CartContext);
-  console.log(cartItems);
 
   const [inputData, setInputData] = useState("");
+  const [totalQty, setTotalQty] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    let item = 0;
+    let price = 0;
 
-  const totalPrice = cartItems.reduce((acc, curr) => acc + curr.price, 0);
+    cartItems.forEach((items) => {
+      item += items.qty;
+      price += items.qty * items.price;
+    });
+    setTotalQty(item);
+    setTotalPrice(price);
+  }, [cartItems, totalPrice, totalQty, setTotalQty, setTotalPrice]);
 
   return (
     <>
@@ -101,6 +111,7 @@ const Navbar = () => {
                   height: "100px",
                   width: "100px",
                   marginRight: "10px",
+                  cursor: "pointer",
                 }}
                 src={logoof}
                 alt=""
@@ -184,7 +195,7 @@ const Navbar = () => {
                     cursor: "pointer",
                   }}
                 >
-                  <Badge count={cartItems.length}>
+                  <Badge count={totalQty}>
                     <Avatar
                       onClick={showDrawer}
                       style={{
@@ -232,6 +243,7 @@ const Navbar = () => {
                 padding: "10px",
                 marginBottom: "5px",
                 height: "70px",
+                borderRadius: "5px",
               }}
             >
               <button
@@ -251,11 +263,13 @@ const Navbar = () => {
                 src={item.image}
                 alt=""
               />
-              <small>Price :{item.price}/</small>
 
-              <small>{item.title.slice(0, 25)}</small>
-              <small>Size: {item.size}</small>
-              <small>qty:{item.qty}</small>
+              <small>{item.title.slice(0, 10)}</small>
+              <br />
+
+              <small>
+                {item.qty}×{item.price}$
+              </small>
             </div>
           ))}
           <div style={{ textAlign: "center" }}>
@@ -265,7 +279,7 @@ const Navbar = () => {
               style={{
                 border: "none",
                 marginRight: "10px",
-                borderRadius: "10px",
+                borderRadius: "5px",
                 color: "white",
                 backgroundColor: "#012a4a ",
                 padding: "5px",
@@ -275,13 +289,13 @@ const Navbar = () => {
                 Click("/cart");
               }}
             >
-              View Cart
+              <small> View Cart</small>
             </button>
             <button
               style={{
                 border: "none",
                 marginRight: "10px",
-                borderRadius: "10px",
+                borderRadius: "5px",
                 color: "white",
                 backgroundColor: "#012a4a ",
                 padding: "5px",
@@ -291,7 +305,7 @@ const Navbar = () => {
                 Click("/checkout");
               }}
             >
-              Check Out
+              <small> Check Out</small>
             </button>
           </div>
         </Drawer>

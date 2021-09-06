@@ -9,6 +9,7 @@ import {
   REMOVE_ITEM,
   SEARCH,
   ADDSIZE,
+  CLEARCART,
 } from "../Types";
 
 const CartState = ({ children }) => {
@@ -41,6 +42,10 @@ const CartState = ({ children }) => {
     dispatch({ type: ADDSIZE, payload: value });
   };
 
+  const clearCart = () => {
+    dispatch({ type: CLEARCART });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -49,11 +54,12 @@ const CartState = ({ children }) => {
         search: state.search,
         size: state.size,
 
-        addSize,
         addToCart,
         showHideCart,
         removeItem,
         searchBar,
+        addSize,
+        clearCart,
       }}
     >
       {children}
