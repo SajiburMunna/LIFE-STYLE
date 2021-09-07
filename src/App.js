@@ -1,57 +1,74 @@
-import Home from "./Home/Home";
-import Men from "./Home/Men";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Women from "./Home/Women";
-import Navbar from "./Home/Navbar";
-import NotFound from "./Home/NotFound";
-import Productdetails from "./Home/Productdetails";
+import React, { useLayoutEffect } from "react";
+import Home from "../src/components/Home/Home";
+import Men from "../src/components/Men/Men";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter,
+} from "react-router-dom";
+import Women from "./components/Women/Women";
+import Navbar from "./components/NavBar/Navbar";
+import NotFound from "./components/NotFound/NotFound";
+import Productdetails from "./components/Products/Productdetails";
 
-import Cart from "./Home/Cart";
-import CheckOut from "./Home/CheckOut";
+import Cart from "./components/Cart/Cart";
+import CheckOut from "./components/CartCheckOut/CheckOut";
 import SignIn from "./LogForm/SignIn";
 
 import "./LogForm/Form.css";
 import Footer from "../src/Footer/Footer";
 
+//Tracking Scroll Position With React Hooks
+const ScrollToTop = withRouter(({ children, location: { pathname } }) => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return children || null;
+});
+
 function App() {
   return (
     <div style={{ marginTop: "50px" }}>
       <Router>
-        <Navbar></Navbar>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/men">
-            <Men></Men>
-          </Route>
-          <Route path="/women">
-            <Women></Women>
-          </Route>
-          <Route path="/productdetails/:id">
-            <Productdetails> </Productdetails>
-          </Route>
-          <Route path="/log">
-            <div className="back">
-              <SignIn></SignIn>
-              <div style={{ marginTop: "70px" }}>
-                <Footer></Footer>
+        <ScrollToTop>
+          <Navbar></Navbar>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/men">
+              <Men></Men>
+            </Route>
+            <Route path="/women">
+              <Women></Women>
+            </Route>
+            <Route path="/productdetails/:id">
+              <Productdetails> </Productdetails>
+            </Route>
+            <Route path="/log">
+              <div className="back">
+                <SignIn></SignIn>
+                <div style={{ marginTop: "70px" }}>
+                  <Footer></Footer>
+                </div>
               </div>
-            </div>
-          </Route>
+            </Route>
 
-          <Route path="/cart">
-            <Cart></Cart>
-          </Route>
+            <Route path="/cart">
+              <Cart></Cart>
+            </Route>
 
-          <Route path="/checkout">
-            <CheckOut></CheckOut>
-          </Route>
+            <Route path="/checkout">
+              <CheckOut></CheckOut>
+            </Route>
 
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </ScrollToTop>
       </Router>
     </div>
   );

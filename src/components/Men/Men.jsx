@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Row, Col, Card, Button, Spin, Divider } from "antd";
-import Footer from "../Footer/Footer";
+import Footer from "../../Footer/Footer";
 import { useHistory } from "react-router-dom";
-import CartContext from "./../context/cart/CartContext";
+import CartContext from "../../context/cart/CartContext";
 import { useContext } from "react";
+import "./Men.css";
 
 const Men = () => {
   const [post, setPost] = useState([]);
@@ -18,10 +19,9 @@ const Men = () => {
       .then((res) => {
         setPost(res.data);
         setLoading(false);
-        console.log(res);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -34,13 +34,11 @@ const Men = () => {
 
   return (
     <>
-      <div style={{ padding: "60px" }}>
+      <div className="men-container">
         <Divider orientation="center" dashed>
-          <h1 style={{ color: "#012a4a" }}>MEN'S PRODUCTS</h1>
+          <h1>MEN'S PRODUCTS</h1>
         </Divider>
-        <div style={{ textAlign: "center" }}>
-          {loading && <Spin size="large"></Spin>}
-        </div>
+        <div className="spin-div">{loading && <Spin size="large"></Spin>}</div>
         <Row gutter={[16, 16]}>
           {men.map((p) => (
             <Col
@@ -51,27 +49,19 @@ const Men = () => {
               lg={{ span: 6 }}
             >
               <Card
-                style={{
-                  textAlign: "center",
-                  boxShadow: " ",
-                  height: "400px",
-                  backgroundColor: "#e8e8e8",
-                }}
+                className="men-card"
                 hoverable
                 cover={
                   <img
                     onClick={() => handleClick(p.id)}
-                    style={{
-                      height: "250px",
-                      padding: "10px",
-                      cursor: "pointer",
-                    }}
+                    className="men-card-image"
                     alt="example"
                     src={p.image}
                   />
                 }
               >
                 <p onClick={() => handleClick(p.id)}>{p.title.slice(0, 25)}</p>
+                <p>{p.price}</p>
                 <Button onClick={() => addToCart({ ...p, qty: 1 })}>
                   Add Cart
                 </Button>

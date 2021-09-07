@@ -2,12 +2,13 @@ import React from "react";
 
 import { useContext, useState, useEffect } from "react";
 
-import CartContext from "../context/cart/CartContext";
+import CartContext from "../../context/cart/CartContext";
 
 import { Card, Image } from "antd";
 import { Button } from "@material-ui/core";
 import { CloseOutlined, ClearOutlined } from "@ant-design/icons";
-import Footer from "../Footer/Footer";
+import Footer from "../../Footer/Footer";
+import "../Cart/Cart.css";
 
 const Cart = () => {
   const { cartItems, removeItem, clearCart } = useContext(CartContext);
@@ -26,10 +27,10 @@ const Cart = () => {
   }, [cartItems, totalPrice, totalQty, setTotalQty, setTotalPrice]);
   return (
     <div>
-      <div style={{ padding: "100px" }}>
-        <div style={{ float: "right" }}>
+      <div style={{ backgroundColor: "white" }} className="container">
+        <div className="card-div">
           <Card
-            style={{ color: "#012a4a ", width: "300px" }}
+            className="card"
             title="Cart Totals"
             extra={
               <Button
@@ -42,10 +43,10 @@ const Cart = () => {
               </Button>
             }
           >
-            <h5 style={{ color: "#012a4a " }}>Total Qunatity :{totalQty}</h5>
-            <h5 style={{ color: "#012a4a " }}>Total Price : {totalPrice} </h5>
+            <h5 className="h5">Total Qunatity :{totalQty}</h5>
+            <h5 className="h5">Total Price : {totalPrice} </h5>
             <div style={{ float: "right" }}>
-              <Button style={{ backgroundColor: "#012a4a ", color: "white" }}>
+              <Button style={{ backgroundColor: "#012a4a", color: "white" }}>
                 {" "}
                 CHECKOUT
               </Button>
@@ -54,20 +55,13 @@ const Cart = () => {
         </div>
         <div>
           {!cartItems.length ? (
-            <h1 style={{ padding: "100px", color: "#012a4a " }}>
+            <h1 className="h1">
               Your Cart Is Currently{" "}
               <span style={{ color: "red" }}>Empty!</span>
             </h1>
           ) : (
             cartItems.map((item) => (
-              <Card
-                style={{
-                  width: "400px",
-                  height: "150px",
-                  marginTop: 16,
-                  backgroundColor: "#e8e8e8",
-                }}
-              >
+              <Card className="product-card">
                 <div style={{ float: "right" }}>
                   <Button
                     style={{ color: "red" }}
@@ -77,10 +71,7 @@ const Cart = () => {
                   </Button>
                 </div>
                 <div style={{ float: "left", marginRight: "10px" }}>
-                  <Image
-                    style={{ width: "100px", height: "100px" }}
-                    src={item.image}
-                  ></Image>
+                  <Image className="image" src={item.image}></Image>
                 </div>
                 <div>
                   <small>{item.title.slice(0, 25)}</small>

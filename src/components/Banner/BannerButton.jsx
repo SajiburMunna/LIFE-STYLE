@@ -2,9 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
-import img4 from "../Image/img4.PNG";
-import img5 from "../Image/img5.jpg";
-import img6 from "../Image/img6.jpg";
+import img4 from "../../Image/img4.PNG";
+import img5 from "../../Image/img5.jpg";
+import img6 from "../../Image/img6.jpg";
 
 const images = [
   {

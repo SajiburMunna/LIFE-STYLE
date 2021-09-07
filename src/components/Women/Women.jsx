@@ -1,12 +1,13 @@
 import React from "react";
-import Footer from "../Footer/Footer";
+import Footer from "../../Footer/Footer";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Row, Col, Card, Button, Spin, Divider } from "antd";
 import { useHistory } from "react-router-dom";
-import CartContext from "./../context/cart/CartContext";
+import CartContext from "../../context/cart/CartContext";
 import { useContext } from "react";
+import "./Women.css";
 
 const Women = () => {
   const [post, setPost] = useState([]);
@@ -24,7 +25,7 @@ const Women = () => {
         setLoading(false);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -36,13 +37,11 @@ const Women = () => {
   const { addToCart } = useContext(CartContext);
   return (
     <>
-      <div style={{ padding: "60px" }}>
+      <div className="women-container">
         <Divider orientation="center" dashed>
-          <h1 style={{ color: "#012a4a" }}>WOMEN'S PRODUCTS</h1>
+          <h1>WOMEN'S PRODUCTS</h1>
         </Divider>
-        <div style={{ textAlign: "center" }}>
-          {loading && <Spin size="large"></Spin>}
-        </div>
+        <div className="spin-div">{loading && <Spin size="large"></Spin>}</div>
         <Row gutter={[16, 16]}>
           {women.map((p) => (
             <Col
@@ -53,21 +52,12 @@ const Women = () => {
               lg={{ span: 6 }}
             >
               <Card
-                style={{
-                  textAlign: "center",
-                  boxShadow: " ",
-                  height: "400px",
-                  backgroundColor: "#e8e8e8",
-                }}
+                className="women-card"
                 hoverable
                 cover={
                   <img
                     onClick={() => handleClick(p.id)}
-                    style={{
-                      height: "250px",
-                      padding: "10px",
-                      cursor: "pointer",
-                    }}
+                    className="women-card-image"
                     alt="example"
                     title="Women's Products"
                     src={p.image}
@@ -75,6 +65,7 @@ const Women = () => {
                 }
               >
                 <p onClick={() => handleClick(p.id)}>{p.title.slice(0, 25)}</p>
+                <p>{p.price}$</p>
                 <Button onClick={() => addToCart({ ...p, qty: 1 })}>
                   Add Cart
                 </Button>

@@ -3,18 +3,10 @@ import { useReducer } from "react";
 import CartContext from "./CartContext";
 
 import CartReducer from "./CartReducer";
-import {
-  SHOW_HIDE_CART,
-  ADD_TO_CART,
-  REMOVE_ITEM,
-  SEARCH,
-  ADDSIZE,
-  CLEARCART,
-} from "../Types";
+import { ADD_TO_CART, REMOVE_ITEM, SEARCH, ADDSIZE, CLEARCART } from "../Types";
 
 const CartState = ({ children }) => {
   const initalState = {
-    showCart: false,
     cartItems: [],
     search: "",
     size: "",
@@ -24,10 +16,6 @@ const CartState = ({ children }) => {
 
   const addToCart = (item) => {
     dispatch({ type: ADD_TO_CART, payload: item });
-  };
-
-  const showHideCart = () => {
-    dispatch({ type: SHOW_HIDE_CART });
   };
 
   const removeItem = (id) => {
@@ -49,13 +37,12 @@ const CartState = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        showCart: state.showCart,
         cartItems: state.cartItems,
         search: state.search,
         size: state.size,
 
         addToCart,
-        showHideCart,
+
         removeItem,
         searchBar,
         addSize,

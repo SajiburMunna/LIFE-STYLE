@@ -1,0 +1,20 @@
+.men-container {
+  padding: 60px;
+  background-color: white;
+}
+h1 {
+  color: #012a4a;
+}
+.spin-div {
+  text-align: center;
+}
+.men-card {
+  text-align: center;
+  height: 400px;
+  background-color: #e8e8e8;
+}
+.men-card-image {
+  height: 250px;
+  padding: 10px;
+  cursor: pointer;
+}

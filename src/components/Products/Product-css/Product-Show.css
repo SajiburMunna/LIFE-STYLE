@@ -1,0 +1,16 @@
+.product-show-card {
+  text-align: center;
+  background-color: #e8e8e8;
+  height: 400px;
+}
+.product-show-image {
+  height: 250px;
+  padding: 10px;
+  cursor: pointer;
+}
+p {
+  cursor: pointer;
+}
+.product-show-button {
+  color: #012a4a;
+}

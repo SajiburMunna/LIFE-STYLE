@@ -5,14 +5,17 @@ import { useEffect } from "react";
 import axios from "axios";
 import ProductShow from "./ProductShow";
 import ReactPaginate from "react-paginate";
-import "./Pagination.css";
+import "../Pagination.css";
 
 import { Divider, Spin, BackTop } from "antd";
 import { Row, Col } from "antd";
 import "antd/dist/antd.css";
 import { useContext } from "react";
 
-import CartContext from "./../context/cart/CartContext";
+import CartContext from "../../context/cart/CartContext";
+import "antd/dist/antd.css";
+import "../../index.css";
+import "./Product-css/Product.css";
 
 const Product = () => {
   const [post, setPost] = useState([]);
@@ -34,7 +37,7 @@ const Product = () => {
 
   const [pageNumber, setPageNumber] = useState(0);
 
-  const userPerPage = 8;
+  const userPerPage = 12;
   const pageVisited = pageNumber * userPerPage;
 
   // const displayUsers = post.slice(pageVisited, pageVisited + userPerPage);
@@ -48,13 +51,11 @@ const Product = () => {
 
   return (
     <>
-      <div style={{ padding: "60px" }}>
+      <div className="product-container">
         <Divider orientation="center" dashed>
-          <h1 style={{ color: "#012a4a" }}>ALL PRODUCTS</h1>
+          <h1>ALL PRODUCTS</h1>
         </Divider>
-        <div style={{ textAlign: "center" }}>
-          {loading && <Spin size="large"></Spin>}
-        </div>
+        <div className="spin-div">{loading && <Spin size="large"></Spin>}</div>
         <Row gutter={[16, 16]}>
           {post
             .slice(pageVisited, pageVisited + userPerPage)
@@ -74,14 +75,14 @@ const Product = () => {
                 lg={{ span: 6 }}
                 key={Math.random()}
               >
-                <ProductShow pd={{ ...pd, qty: 1 }}></ProductShow>
+                <ProductShow
+                  pd={{ ...pd, qty: 1, size: "M", color: "Black" }}
+                ></ProductShow>
               </Col>
             ))}
         </Row>
       </div>
-      <BackTop
-        style={{ color: "#012a4a", backgroundColor: "#012a4a" }}
-      ></BackTop>
+      <BackTop className="back-top"></BackTop>
       {!loading && (
         <div>
           <ReactPaginate

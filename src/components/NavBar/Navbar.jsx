@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
-import logoof from "../Image/logoof.png";
+import logoof from "../../Image/logoof.png";
 import {
   AppBar,
   makeStyles,
@@ -28,7 +28,7 @@ import {
 import { Badge, Avatar } from "antd";
 import { useContext } from "react";
 
-import CartContext from "../context/cart/CartContext";
+import CartContext from "../../context/cart/CartContext";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -44,12 +44,18 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   app: { backgroundColor: "#012a4a" },
   color: { color: "#fff" },
+  nav: {
+    background: "white",
+    width: "100px",
+    marginLeft: "30px",
+  },
 }));
 
 const Navbar = () => {
   let history = useHistory();
   const [value1, setValue1] = useState(0);
   const value = ["/", "/men", "/women"];
+  console.log(value1);
 
   function handleClick(click) {
     history.push(click);
@@ -61,18 +67,14 @@ const Navbar = () => {
 
   const classes = useStyles();
 
-  const theme = useTheme(); //Get a copy of our default theme in our component so that we can access the breakpoints and pass the useMediaQuery
+  const theme = useTheme();
 
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
 
-  //Functions
   const handleClickTab = (e, newValue) => {
-    //The second value contains the current index
-    console.log(value1);
     setValue1(newValue);
   };
 
-  //
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -124,13 +126,8 @@ const Navbar = () => {
             ) : (
               <>
                 <Tabs
+                  value={value && history.location.pathname}
                   onChange={handleClickTab}
-                  className={classes.tabsContainer}
-                  value={
-                    history.location.pathname === "/cart"
-                      ? null
-                      : history.location.pathname
-                  }
                   TabIndicatorProps={{
                     style: {
                       background: "white",
@@ -144,7 +141,6 @@ const Navbar = () => {
                     onClick={() => {
                       handleClick("/");
                     }}
-                    disableRipple
                     label="Home"
                   />
                   <Tab
@@ -152,7 +148,6 @@ const Navbar = () => {
                     onClick={() => {
                       handleClick("/men");
                     }}
-                    disableRipple
                     label="Men"
                   />
                   <Tab
@@ -160,7 +155,6 @@ const Navbar = () => {
                     onClick={() => {
                       handleClick("/women");
                     }}
-                    disableRipple
                     label="Women"
                   />
                 </Tabs>
@@ -302,7 +296,7 @@ const Navbar = () => {
                 cursor: "pointer",
               }}
               onClick={() => {
-                Click("/checkout");
+                Click("/log");
               }}
             >
               <small> Check Out</small>

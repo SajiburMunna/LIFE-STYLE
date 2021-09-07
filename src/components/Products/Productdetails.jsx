@@ -8,8 +8,8 @@ import axios from "axios";
 import { Row, Col, Select, InputNumber, Button, Tabs, Form } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
-import Footer from "../Footer/Footer";
-import CartContext from "./../context/cart/CartContext";
+import Footer from "../../Footer/Footer";
+import CartContext from "../../context/cart/CartContext";
 
 const { TabPane } = Tabs;
 
@@ -57,7 +57,7 @@ const Productdetails = () => {
   }
   function onFinish() {}
   return (
-    <div>
+    <div style={{}}>
       <div style={{ padding: "100px" }}>
         <Row gutter={[16, 16]}>
           <Col

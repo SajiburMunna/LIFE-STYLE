@@ -1,0 +1,33 @@
+.container {
+  padding: 100px;
+}
+.card-div {
+  float: right;
+}
+.card {
+  color: #012a4a;
+  width: 300px;
+  background-color: #e8e8e8;
+}
+
+.h5 {
+  color: #012a4a;
+}
+
+.h1 {
+  padding: 100px;
+  color: "#012a4a ";
+}
+.span {
+  color: #ff0000;
+}
+.product-card {
+  width: 400px;
+  height: 150px;
+  margin-top: 16px;
+  background-color: #e8e8e8;
+}
+.image {
+  width: 100px;
+  height: 100px;
+}

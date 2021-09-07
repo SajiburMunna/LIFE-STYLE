@@ -3,18 +3,11 @@ import "antd/dist/antd.css";
 
 import { Row, Col, Divider } from "antd";
 import { FacebookFilled, TwitterSquareFilled } from "@ant-design/icons";
-
-const style = {
-  background: "#012a4a",
-  color: "#e8e8e8",
-  padding: "5px 0",
-  textAlign: "center",
-  marginTop: "20px",
-};
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div style={{ backgroundColor: "#e8e8e8", padding: "60px" }}>
+    <div className="container">
       <Row gutter={[16, 16]}>
         <Col
           xs={{ span: 24 }}
@@ -22,9 +15,9 @@ const Footer = () => {
           md={{ span: 12 }}
           lg={{ span: 6 }}
         >
-          <h5 style={style}>ABOUT US</h5>
+          <h5 className="title">ABOUT US</h5>
           <div>
-            <h5 style={{ color: "#012a4a" }}>
+            <h5>
               RISE is a modern lifestyle clothing brand that puts emphasis on
               style and fashion. RISE infuses street culture with national and
               traditional styling.RISE represents one thing; pride in yourself.
@@ -38,31 +31,17 @@ const Footer = () => {
           md={{ span: 12 }}
           lg={{ span: 6 }}
         >
-          <h5 style={style}>RECENT POSTS</h5>
+          <h5 className="title">RECENT POSTS</h5>
           <div>
-            <h5 style={{ color: "#012a4a" }}>
-              Bangladesh makes a fashion statement – Nikkei Asian Review
-            </h5>
+            <h5>Bangladesh makes a fashion statement – Nikkei Asian Review</h5>
           </div>
-          <Divider
-            type="horizontal"
-            dashed
-            style={{ backgroundColor: "#012a4a" }}
-          />
+          <Divider type="horizontal" dashed className="Divider" />
           <div>
-            <h5 style={{ color: "#012a4a" }}>
-              টি-শার্টে বিশ্বকাপ – Dhaka Times
-            </h5>
+            <h5>টি-শার্টে বিশ্বকাপ – Dhaka Times</h5>
           </div>
-          <Divider
-            type="horizontal"
-            dashed
-            style={{ backgroundColor: "#012a4a" }}
-          />
+          <Divider type="horizontal" dashed className="Divider" />
           <div>
-            <h5 style={{ color: "#012a4a" }}>
-              Rise | Meet the Roadies – ICE TODAY
-            </h5>
+            <h5>Rise | Meet the Roadies – ICE TODAY</h5>
           </div>
         </Col>
 
@@ -72,25 +51,17 @@ const Footer = () => {
           md={{ span: 12 }}
           lg={{ span: 6 }}
         >
-          <h5 style={style}>INFORMATION</h5>
+          <h5 className="title">INFORMATION</h5>
           <div>
-            <h5 style={{ color: "#012a4a" }}>ABOUT US</h5>
+            <h5>ABOUT US</h5>
           </div>
-          <Divider
-            type="horizontal"
-            dashed
-            style={{ backgroundColor: "#012a4a" }}
-          />
+          <Divider type="horizontal" dashed className="Divider" />
           <div>
-            <h5 style={{ color: "#012a4a" }}>CONTACT US</h5>
+            <h5>CONTACT US</h5>
           </div>
-          <Divider
-            type="horizontal"
-            dashed
-            style={{ backgroundColor: "#012a4a" }}
-          />
+          <Divider className="Divider" type="horizontal" dashed />
           <div>
-            <h5 style={{ color: "#012a4a" }}>BLOG</h5>
+            <h5>BLOG</h5>
           </div>
         </Col>
 
@@ -100,11 +71,10 @@ const Footer = () => {
           md={{ span: 12 }}
           lg={{ span: 6 }}
         >
-          <h5 style={style}>GET TO KNOW US</h5>
+          <h5 className="title">GET TO KNOW US</h5>
           <div>
             <h2>
               <a
-                style={{ color: "#012a4a" }}
                 href="https://www.facebook.com/risebrandclothing"
                 rel="noreferrer"
                 target="_blank"
@@ -120,7 +90,6 @@ const Footer = () => {
                 href="https://www.facebook.com/risebrandclothing"
                 rel="noreferrer"
                 target="_blank"
-                style={{ color: "#012a4a" }}
               >
                 <TwitterSquareFilled /> Twitter
               </a>
