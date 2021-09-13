@@ -44,7 +44,7 @@ const Cart = () => {
             }
           >
             <h5 className="h5">Total Qunatity :{totalQty}</h5>
-            <h5 className="h5">Total Price : {totalPrice} </h5>
+            <h5 className="h5">Total Price : {totalPrice.toFixed(2)}$ </h5>
             <div style={{ float: "right" }}>
               <Button style={{ backgroundColor: "#012a4a", color: "white" }}>
                 {" "}

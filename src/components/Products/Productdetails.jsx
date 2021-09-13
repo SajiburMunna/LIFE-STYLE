@@ -10,6 +10,8 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import Footer from "../../Footer/Footer";
 import CartContext from "../../context/cart/CartContext";
+import swal from "@sweetalert/with-react";
+import "../Products/Product-css/Product-details.css";
 
 const { TabPane } = Tabs;
 
@@ -22,7 +24,6 @@ const Productdetails = () => {
   const { id } = useParams();
 
   const [post, setPost] = useState([]);
-  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -118,9 +119,6 @@ const Productdetails = () => {
               </div>
               <div>
                 <div>
-                  <h4 style={{ float: "left", marginRight: "10px" }}>
-                    Quantity :{" "}
-                  </h4>
                   <InputNumber
                     min={1}
                     max={10}
@@ -137,7 +135,13 @@ const Productdetails = () => {
                               color: color,
                               qty: qty,
                             })
-                          : alert("Select Your Size and Color")
+                          : swal(
+                              <div className=" swal-text ">
+                                <p style={{ color: "red" }}>
+                                  Select Your Size and Color
+                                </p>
+                              </div>
+                            )
                       }
                     >
                       <ShoppingCartOutlined />

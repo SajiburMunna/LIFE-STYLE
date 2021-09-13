@@ -29,6 +29,7 @@ import { Badge, Avatar } from "antd";
 import { useContext } from "react";
 
 import CartContext from "../../context/cart/CartContext";
+import "../NavBar/Nav-css/Navbar.css";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -107,17 +108,8 @@ const Navbar = () => {
       <AppBar className={classes.app}>
         <div>
           <Toolbar>
-            <div style={{ float: "left" }}>
-              <img
-                style={{
-                  height: "100px",
-                  width: "100px",
-                  marginRight: "10px",
-                  cursor: "pointer",
-                }}
-                src={logoof}
-                alt=""
-              />
+            <div className="toolbar-div">
+              <img className="toolbar-img-logo" src={logoof} alt="logo" />
             </div>
             {isMatch ? (
               <>
@@ -159,57 +151,33 @@ const Navbar = () => {
                   />
                 </Tabs>
 
-                <div style={{ margin: "auto", color: "black" }}>
+                <div className="serachbar-div">
                   <input
-                    style={{
-                      border: "none",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                    }}
+                    className="serachbar"
                     type="text"
                     placeholder="Search Your Products"
                     value={inputData}
                     onChange={(evant) => setInputData(evant.target.value)}
                   />
                   <button
-                    style={{
-                      border: "none",
-                      borderRadius: "10px",
-                      marginLeft: "5px",
-                      cursor: "pointer",
-                    }}
+                    className="searchbar-button"
                     onClick={() => searchBar(inputData)}
                   >
                     <SearchOutlined />
                   </button>
                 </div>
-                <div
-                  style={{
-                    marginRight: "15px",
-                    cursor: "pointer",
-                  }}
-                >
+                <div className="badge-div">
                   <Badge count={totalQty}>
                     <Avatar
                       onClick={showDrawer}
-                      style={{
-                        backgroundColor: "white",
-                        color: " #012a4a",
-                      }}
+                      className="avatar"
                       shape="square"
-                      size="small"
+                      size="medium"
                       icon={<ShoppingCartOutlined />}
                     />
                   </Badge>
                 </div>
-                <div
-                  style={{
-                    color: "white",
-                    fontSize: "25px",
-                    cursor: "pointer",
-                    marginRight: "30px",
-                  }}
-                >
+                <div className="login-button-div">
                   <UserOutlined
                     onClick={() => {
                       handleClick("/log");
@@ -230,33 +198,14 @@ const Navbar = () => {
           zIndex={2000}
         >
           {cartItems.map((item) => (
-            <div
-              style={{
-                border: "2px solid #012a4a ",
-                textAlign: "center",
-                padding: "10px",
-                marginBottom: "5px",
-                height: "70px",
-                borderRadius: "5px",
-              }}
-            >
+            <div className="add-cart-div">
               <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  float: "right",
-                  color: "red",
-                  cursor: "pointer",
-                }}
+                className="add-cart-remove-button"
                 onClick={() => removeItem(item.id)}
               >
                 <CloseOutlined />
               </button>
-              <img
-                style={{ height: "50px", width: "30px", float: "left" }}
-                src={item.image}
-                alt=""
-              />
+              <img className="add-cart-image" src={item.image} alt="" />
 
               <small>{item.title.slice(0, 10)}</small>
               <br />
@@ -266,19 +215,11 @@ const Navbar = () => {
               </small>
             </div>
           ))}
-          <div style={{ textAlign: "center" }}>
-            <p>Total Price : ${totalPrice}</p>
+          <div className="total-price-div">
+            <p>Total Price : ${totalPrice.toFixed(2)}</p>
 
             <button
-              style={{
-                border: "none",
-                marginRight: "10px",
-                borderRadius: "5px",
-                color: "white",
-                backgroundColor: "#012a4a ",
-                padding: "5px",
-                cursor: "pointer",
-              }}
+              className=" view-cart-checkout-button"
               onClick={() => {
                 Click("/cart");
               }}
@@ -286,15 +227,7 @@ const Navbar = () => {
               <small> View Cart</small>
             </button>
             <button
-              style={{
-                border: "none",
-                marginRight: "10px",
-                borderRadius: "5px",
-                color: "white",
-                backgroundColor: "#012a4a ",
-                padding: "5px",
-                cursor: "pointer",
-              }}
+              className="view-cart-checkout-button"
               onClick={() => {
                 Click("/log");
               }}

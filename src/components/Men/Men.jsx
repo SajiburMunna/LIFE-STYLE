@@ -62,7 +62,11 @@ const Men = () => {
               >
                 <p onClick={() => handleClick(p.id)}>{p.title.slice(0, 25)}</p>
                 <p>{p.price}</p>
-                <Button onClick={() => addToCart({ ...p, qty: 1 })}>
+                <Button
+                  onClick={() =>
+                    addToCart({ ...p, qty: 1, size: "M", color: "Black" })
+                  }
+                >
                   Add Cart
                 </Button>
               </Card>

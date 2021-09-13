@@ -1,7 +1,6 @@
 img {
-  height: 400px;
-  width: 1400px;
-}
-.carousel {
-  margin-top: 60px;
+  height: 500px;
+  width: 1300px;
+  line-height: 160px;
+  text-align: center;
 }

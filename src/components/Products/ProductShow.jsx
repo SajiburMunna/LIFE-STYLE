@@ -16,7 +16,7 @@ const ProductShow = ({ pd }) => {
   const { addToCart } = useContext(CartContext);
   return (
     <div>
-      <div style={{ cursor: "contextMenu" }}>
+      <div style={{ cursor: "pointer" }}>
         <Card
           className="product-show-card"
           hoverable
