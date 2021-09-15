@@ -12,6 +12,6 @@
 7.PAGINATION.
 
 ## WEBSITE-LINK :
-LINK : life-style123.netlify.app/
+LINK : https://life-style123.netlify.app/
 </br>
 Download and enter "npm i" then "npm start" to run the project.
