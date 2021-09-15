@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -30,7 +31,7 @@ const Men = () => {
     history.push(`/productdetails/${id}`);
   }
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, search } = useContext(CartContext);
 
   return (
     <>
@@ -40,38 +41,48 @@ const Men = () => {
         </Divider>
         <div className="spin-div">{loading && <Spin size="large"></Spin>}</div>
         <Row gutter={[16, 16]}>
-          {men.map((p) => (
-            <Col
-              key={Math.random()}
-              xs={{ span: 24 }}
-              sm={{ span: 12 }}
-              md={{ span: 12 }}
-              lg={{ span: 6 }}
-            >
-              <Card
-                className="men-card"
-                hoverable
-                cover={
-                  <img
-                    onClick={() => handleClick(p.id)}
-                    className="men-card-image"
-                    alt="example"
-                    src={p.image}
-                  />
-                }
+          {men
+            .filter((p) => {
+              if (search === "") {
+                return p;
+              } else if (p.title.toLowerCase().includes(search.toLowerCase())) {
+                return p;
+              }
+            })
+            .map((p) => (
+              <Col
+                key={Math.random()}
+                xs={{ span: 24 }}
+                sm={{ span: 12 }}
+                md={{ span: 12 }}
+                lg={{ span: 6 }}
               >
-                <p onClick={() => handleClick(p.id)}>{p.title.slice(0, 25)}</p>
-                <p>{p.price}</p>
-                <Button
-                  onClick={() =>
-                    addToCart({ ...p, qty: 1, size: "M", color: "Black" })
+                <Card
+                  className="men-card"
+                  hoverable
+                  cover={
+                    <img
+                      onClick={() => handleClick(p.id)}
+                      className="men-card-image"
+                      alt="example"
+                      src={p.image}
+                    />
                   }
                 >
-                  Add Cart
-                </Button>
-              </Card>
-            </Col>
-          ))}
+                  <p onClick={() => handleClick(p.id)}>
+                    {p.title.slice(0, 25)}
+                  </p>
+                  <p>{p.price}</p>
+                  <Button
+                    onClick={() =>
+                      addToCart({ ...p, qty: 1, size: "M", color: "Black" })
+                    }
+                  >
+                    Add Cart
+                  </Button>
+                </Card>
+              </Col>
+            ))}
         </Row>
       </div>
       <Footer></Footer>

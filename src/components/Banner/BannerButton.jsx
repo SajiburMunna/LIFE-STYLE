@@ -10,17 +10,17 @@ const images = [
   {
     url: img4,
     title: "OFFER PRODUCTS",
-    width: "30%",
+    width: "30.33%",
   },
   {
     url: img5,
     title: "GET FREE DELIVERY",
-    width: "30%",
+    width: "30.33%",
   },
   {
     url: img6,
     title: "CLUB CARD",
-    width: "30%",
+    width: "30.33%",
   },
 ];
 
@@ -28,12 +28,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    minWidth: 300,
-    width: "100%",
+    marginLeft: 160,
+    marginRight: 100,
+    padding: 20,
   },
   image: {
     position: "relative",
     height: 200,
+    margin: 10,
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
       height: 100,

@@ -9,6 +9,7 @@ import {
   Drawer,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useHistory } from "react-router";
 
 const DrawerComponent = () => {
   const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,11 @@ const DrawerComponent = () => {
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  const history = useHistory();
+  const click = (click) => {
+    history.push(click);
+  };
+
   //Css
   const classes = useStyles();
   return (
@@ -38,25 +44,30 @@ const DrawerComponent = () => {
         <List>
           <ListItem divider button onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
-              <ListItemText> Home</ListItemText>
+              <ListItemText onClick={() => click("/")}> Home</ListItemText>
             </ListItemIcon>
           </ListItem>
 
           <ListItem divider button onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
-              <ListItemText> Men</ListItemText>
+              <ListItemText onClick={() => click("/men")}> Men</ListItemText>
             </ListItemIcon>
           </ListItem>
 
           <ListItem divider button onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
-              <ListItemText> Women</ListItemText>
+              <ListItemText onClick={() => click("/women")}>
+                {" "}
+                Women
+              </ListItemText>
             </ListItemIcon>
           </ListItem>
 
           <ListItem divider button onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
-              <ListItemText> Junior</ListItemText>
+              <ListItemText onClick={() => click("/cart")}>
+                Go To Cart
+              </ListItemText>
             </ListItemIcon>
           </ListItem>
         </List>
