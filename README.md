@@ -11,6 +11,13 @@
 6.QUANTITY,COLOR AND SIZE ADD.</br>
 7.PAGINATION.
 
+## Technologies Used :
+1.REACT
+2.FAKE STORE API
+3.ANT DESIGN
+4.FORMIK-FORM
+5.SWEET ALERT
+
 ## WEBSITE-LINK :
 LINK : https://life-style123.netlify.app/
 </br>
